@@ -20,6 +20,11 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('lara-component', require('./components/LaravelUpdated.vue').default);
+Vue.component('get-json', require('./components/GetJson').default);
+Vue.component('chart-line', require('./components/ChartLine').default);
+Vue.component('chart-pie', require('./components/ChartPie').default);
+Vue.component('random-chart', require('./components/RandomChartLine').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
