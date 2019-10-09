@@ -8,7 +8,8 @@
             {{-- <get-json></get-json>--}}
             {{-- <chart-line></chart-line>--}}
            {{-- <chart-pie></chart-pie>--}}
-            <random-chart></random-chart>
+           {{-- <random-chart></random-chart>--}}
+            <socket-chart></socket-chart>
             <div class="card-body">
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">

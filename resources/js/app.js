@@ -25,6 +25,7 @@ Vue.component('get-json', require('./components/GetJson').default);
 Vue.component('chart-line', require('./components/ChartLine').default);
 Vue.component('chart-pie', require('./components/ChartPie').default);
 Vue.component('random-chart', require('./components/RandomChartLine').default);
+Vue.component('socket-chart', require('./components/ChartSocket').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

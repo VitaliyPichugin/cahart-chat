@@ -23,6 +23,10 @@ Route::group(['prefix' => 'start'], function (){
     Route::get('/random-chart', 'StartController@randomChart')->name('random-chart');
 });
 
+Route::group(['prefix' => 'real'], function (){
+    Route::get('/event', 'RealController@newEvent')->name('event');
+});
+
 
 Auth::routes();
 
