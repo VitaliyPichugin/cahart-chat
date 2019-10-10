@@ -14,7 +14,7 @@ class NewEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $result;
+    public $results;
 
     /**
      * Create a new event instance.
@@ -23,7 +23,7 @@ class NewEvent implements ShouldBroadcast
      */
     public function __construct($data)
     {
-        $this->result = $data;
+        $this->results = $data;
     }
 
     /**

@@ -2084,7 +2084,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var socket = io('http://localhost:3000');
     socket.on("new-action:App\\Events\\NewEvent", function (data) {
-      this.data = data.result;
+      this.data = data.results;
     }.bind(this));
     this.update();
   },
@@ -2094,7 +2094,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/real/event').then(function (responce) {
         _this.data = responce.data;
-        console.log(_this.data);
       });
     },
     sendData: function sendData() {
@@ -2111,6 +2110,11 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (responce) {
         _this2.data = responce.data;
       });
+    },
+    isAN: function isAN(value) {
+      if (value instanceof Number) value = value.valueOf(); // Если это объект числа, то берём значение, которое и будет числом
+
+      return isFinite(value) && value === parseInt(value, 10);
     }
   }
 });

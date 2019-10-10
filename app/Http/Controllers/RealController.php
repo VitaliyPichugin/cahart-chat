@@ -3,7 +3,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Events\NewEvent;
 use Illuminate\Http\Request;
 

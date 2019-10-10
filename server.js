@@ -7,7 +7,6 @@ redis.subscribe('new-action');
 redis.on('message', function (channel, message) {
     console.log('Message recieved: '+ message);
     console.log('Channel: ' + channel);
-    console.log('Error: ' + message.stack);
     message = JSON.parse(message);
     io.emit(channel + ':' + message.event, message.data);
 });

@@ -34,7 +34,7 @@
         mounted() {
             var socket = io('http://localhost:3000');
             socket.on("new-action:App\\Events\\NewEvent", function (data) {
-                this.data = data.result;
+                this.data = data.results;
             }.bind(this));
             this.update();
         },
@@ -42,7 +42,6 @@
             update: function () {
                 axios.get('/real/event').then((responce) => {
                     this.data = responce.data;
-                    console.log(this.data);
                 });
             },
             sendData: function () {
@@ -57,6 +56,12 @@
                 }).then((responce) => {
                     this.data = responce.data;
                 });
+            },
+            isAN: function (value) {
+                if (value instanceof Number)
+                    value = value.valueOf(); // Если это объект числа, то берём значение, которое и будет числом
+
+                return isFinite(value) && value === parseInt(value, 10);
             }
         }
     }
