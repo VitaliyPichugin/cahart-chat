@@ -2082,8 +2082,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var socket = io('http://localhost:3000');
-    socket.on("new-action:App\\Events\\NewEvent", function (data) {
+    // var socket = io('http://localhost:3000');
+    io('http://localhost:3000').on("new-action:App\\Events\\NewEvent", function (data) {
       this.data = data.results;
     }.bind(this));
     this.update();
@@ -2115,6 +2115,64 @@ __webpack_require__.r(__webpack_exports__);
       if (value instanceof Number) value = value.valueOf(); // Если это объект числа, то берём значение, которое и будет числом
 
       return isFinite(value) && value === parseInt(value, 10);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatSocket.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChatSocket.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dataMessage: [],
+      message: ''
+    };
+  },
+  mounted: function mounted() {
+    io('http://localhost:3000').on("new-action:App\\Events\\NewMessage", function (data) {
+      this.dataMessage.push(data.message);
+    }.bind(this));
+  },
+  methods: {
+    sendMessage: function sendMessage() {
+      var _this = this;
+
+      axios({
+        method: 'get',
+        url: '/real/event/message',
+        params: {
+          message: this.message
+        }
+      }).then(function (responce) {
+        _this.message = '';
+      });
     }
   }
 });
@@ -79622,6 +79680,78 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatSocket.vue?vue&type=template&id=b77e07d4&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ChatSocket.vue?vue&type=template&id=b77e07d4& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "textarea",
+            { staticClass: "form-control", attrs: { rows: "6", readonly: "" } },
+            [_vm._v(_vm._s(_vm.dataMessage.join("\n")))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "input-group mb-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.message,
+                expression: "message"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Input message" },
+            domProps: { value: _vm.message },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.message = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-append" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary",
+                attrs: { type: "button" },
+                on: { click: _vm.sendMessage }
+              },
+              [_vm._v("Send")]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
@@ -92108,6 +92238,7 @@ Vue.component('chart-line', __webpack_require__(/*! ./components/ChartLine */ ".
 Vue.component('chart-pie', __webpack_require__(/*! ./components/ChartPie */ "./resources/js/components/ChartPie.vue")["default"]);
 Vue.component('random-chart', __webpack_require__(/*! ./components/RandomChartLine */ "./resources/js/components/RandomChartLine.vue")["default"]);
 Vue.component('socket-chart', __webpack_require__(/*! ./components/ChartSocket */ "./resources/js/components/ChartSocket.vue")["default"]);
+Vue.component('socket-chat', __webpack_require__(/*! ./components/ChatSocket */ "./resources/js/components/ChatSocket.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -92381,6 +92512,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChartSocket_vue_vue_type_template_id_29a01f56___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChartSocket_vue_vue_type_template_id_29a01f56___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatSocket.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/ChatSocket.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ChatSocket_vue_vue_type_template_id_b77e07d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ChatSocket.vue?vue&type=template&id=b77e07d4& */ "./resources/js/components/ChatSocket.vue?vue&type=template&id=b77e07d4&");
+/* harmony import */ var _ChatSocket_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ChatSocket.vue?vue&type=script&lang=js& */ "./resources/js/components/ChatSocket.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ChatSocket_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ChatSocket_vue_vue_type_template_id_b77e07d4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ChatSocket_vue_vue_type_template_id_b77e07d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ChatSocket.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatSocket.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/ChatSocket.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatSocket_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ChatSocket.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatSocket.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatSocket_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ChatSocket.vue?vue&type=template&id=b77e07d4&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/ChatSocket.vue?vue&type=template&id=b77e07d4& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatSocket_vue_vue_type_template_id_b77e07d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ChatSocket.vue?vue&type=template&id=b77e07d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ChatSocket.vue?vue&type=template&id=b77e07d4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatSocket_vue_vue_type_template_id_b77e07d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ChatSocket_vue_vue_type_template_id_b77e07d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

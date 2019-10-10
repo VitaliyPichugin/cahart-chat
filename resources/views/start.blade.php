@@ -9,7 +9,8 @@
             {{-- <chart-line></chart-line>--}}
            {{-- <chart-pie></chart-pie>--}}
            {{-- <random-chart></random-chart>--}}
-            <socket-chart></socket-chart>
+           {{-- <socket-chart></socket-chart>--}}
+            <socket-chat></socket-chat>
             <div class="card-body">
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">

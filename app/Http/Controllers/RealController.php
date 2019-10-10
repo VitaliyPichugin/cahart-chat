@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewEvent;
+use App\Events\NewMessage;
 use Illuminate\Http\Request;
 
 class RealController
@@ -32,6 +33,12 @@ class RealController
         }
 
         return $result;
+    }
+
+    public function newMessage(Request $request){
+        if($request->message) {
+            event(new NewMessage($request->message));
+        }
     }
 
 }

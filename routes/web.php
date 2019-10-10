@@ -25,6 +25,7 @@ Route::group(['prefix' => 'start'], function (){
 
 Route::group(['prefix' => 'real'], function (){
     Route::get('/event', 'RealController@newEvent')->name('event');
+    Route::get('/event/message', 'RealController@newMessage')->name('event.message');
 });
 
 

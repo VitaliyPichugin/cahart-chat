@@ -32,8 +32,8 @@
             }
         },
         mounted() {
-            var socket = io('http://localhost:3000');
-            socket.on("new-action:App\\Events\\NewEvent", function (data) {
+           // var socket = io('http://localhost:3000');
+            io('http://localhost:3000').on("new-action:App\\Events\\NewEvent", function (data) {
                 this.data = data.results;
             }.bind(this));
             this.update();
